@@ -11,7 +11,7 @@ const { errorHandler } = require("./middleware/errorHandler");
 
 // configs
 const connectDB = require("./config/dbConnection");
-const corsOptions = require("./config/corsOprions");
+const corsOptions = require("./config/corsOptions");
 
 const app = express();
 const PORT = process.env.PORT || 3500;
@@ -26,6 +26,7 @@ app.use(cookieParser());
 
 app.use("/", express.static(path.join(__dirname, "public")));
 app.use("/", require("./routes/root"));
+app.use('/users', require('./routes/userRoutes'))
 
 app.all("*", (req, res) => {
   res.status(404);
